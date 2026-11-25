@@ -26,7 +26,8 @@ import java.util.ArrayList;
 /** Steve's selectable character shell. */
 public class SteveCharacter extends CustomPlayer {
     public static final int ENERGY_PER_TURN = 3;
-    private static final Color STEVE_COLOR = new Color(0.20F, 0.68F, 0.62F, 1.0F);\n    private static final int RESOURCE_CAP = 99;\n    public int coal, iron, gold, diamond, emerald, ancientDebris;
+    private static final Color STEVE_COLOR = new Color(0.20F, 0.68F, 0.62F, 1.0F);
+    private static final int RESOURCE_CAP = 99;\n    public int coal, iron, gold, diamond, emerald, ancientDebris;
 
     public SteveCharacter(String name) {
         super(name, SteveEnums.STEVE,
