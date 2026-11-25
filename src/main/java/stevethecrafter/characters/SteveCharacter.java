@@ -29,7 +29,40 @@ public class SteveCharacter extends CustomPlayer {
     public static final int ENERGY_PER_TURN = 3;
     private static final Color STEVE_COLOR = new Color(0.20F, 0.68F, 0.62F, 1.0F);
     private static final int RESOURCE_CAP = 99;
-    public int coal, iron, gold, diamond, emerald, ancientDebris;
+    public int coal, copper, iron, gold, redstone, lapis, diamond, emerald, ancientDebris;
+
+    /** Adds a material to Steve's capped run inventory. */
+    public void gainResource(SteveResource resource, int amount) {
+        int next = Math.max(0, amount);
+        switch (resource) {
+            case COAL: coal = Math.min(RESOURCE_CAP, coal + next); break;
+            case COPPER: copper = Math.min(RESOURCE_CAP, copper + next); break;
+            case IRON: iron = Math.min(RESOURCE_CAP, iron + next); break;
+            case GOLD: gold = Math.min(RESOURCE_CAP, gold + next); break;
+            case REDSTONE: redstone = Math.min(RESOURCE_CAP, redstone + next); break;
+            case LAPIS: lapis = Math.min(RESOURCE_CAP, lapis + next); break;
+            case DIAMOND: diamond = Math.min(RESOURCE_CAP, diamond + next); break;
+            case EMERALD: emerald = Math.min(RESOURCE_CAP, emerald + next); break;
+            case ANCIENT_DEBRIS: ancientDebris = Math.min(RESOURCE_CAP, ancientDebris + next); break;
+            default: break;
+        }
+    }
+
+    /** Returns the current amount of a material in Steve's inventory. */
+    public int getResource(SteveResource resource) {
+        switch (resource) {
+            case COAL: return coal;
+            case COPPER: return copper;
+            case IRON: return iron;
+            case GOLD: return gold;
+            case REDSTONE: return redstone;
+            case LAPIS: return lapis;
+            case DIAMOND: return diamond;
+            case EMERALD: return emerald;
+            case ANCIENT_DEBRIS: return ancientDebris;
+            default: return 0;
+        }
+    }
 
     public SteveCharacter(String name) {
         super(name, SteveEnums.STEVE,

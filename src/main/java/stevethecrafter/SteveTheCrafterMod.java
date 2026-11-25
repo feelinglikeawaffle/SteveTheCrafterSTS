@@ -13,6 +13,11 @@ import stevethecrafter.cards.WoodenPickaxe;
 import stevethecrafter.cards.WoodenShield;
 import stevethecrafter.cards.MineCoal;
 import stevethecrafter.cards.MakeTorch;
+import stevethecrafter.cards.StoneSword;
+import stevethecrafter.cards.MineCopper;
+import stevethecrafter.cards.MineRedstone;
+import stevethecrafter.cards.TNT;
+import stevethecrafter.cards.LapisEnchant;
 import stevethecrafter.relics.SteveInventory;
 
 /** Mod entry point and Steve character registration. */
@@ -51,6 +56,11 @@ public class SteveTheCrafterMod implements EditCharactersSubscriber, EditCardsSu
         BaseMod.addCard(new WoodenShield());
         BaseMod.addCard(new MineCoal());
         BaseMod.addCard(new MakeTorch());
+        BaseMod.addCard(new StoneSword());
+        BaseMod.addCard(new MineCopper());
+        BaseMod.addCard(new MineRedstone());
+        BaseMod.addCard(new TNT());
+        BaseMod.addCard(new LapisEnchant());
     }
 
     @Override
