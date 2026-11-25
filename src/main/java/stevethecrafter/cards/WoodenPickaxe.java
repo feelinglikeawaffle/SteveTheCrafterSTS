@@ -11,6 +11,12 @@ public class WoodenPickaxe extends AbstractSteveCard {
         super(ID, "Wooden Pickaxe", "card_placeholder.png", 1, "Gain 2 Iron.", CardType.SKILL, CardRarity.BASIC, CardTarget.SELF);
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) { addToBot(new GainResourceAction(SteveResource.IRON, upgraded ? 3 : 2)); }
-    @Override public void upgrade() { if (!upgraded) upgradeName(); }
+    @Override public void upgrade() {
+        if (!upgraded) {
+            upgradeName();
+            rawDescription = "Gain 3 Iron.";
+            initializeDescription();
+        }
+    }
     @Override public AbstractSteveCard makeCopy() { return new WoodenPickaxe(); }
 }
