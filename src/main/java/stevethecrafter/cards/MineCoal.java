@@ -10,7 +10,8 @@ public class MineCoal extends AbstractSteveCard {
     public MineCoal() {
         super(ID, "Mine Coal", "card_placeholder.png", 1, "Gain 2 Coal.", CardType.SKILL, CardRarity.BASIC, CardTarget.SELF);
     }
-    @Override public void use(AbstractPlayer p, AbstractMonster m) { addToBot(new GainResourceAction(SteveResource.COAL, upgraded ? 3 : 2)); }
+    @Override public void use(AbstractPlayer p, AbstractMonster m) {
+        animateMine(); addToBot(new GainResourceAction(SteveResource.COAL, upgraded ? 3 : 2)); }
     @Override public void upgrade() {
         if (!upgraded) {
             upgradeName();

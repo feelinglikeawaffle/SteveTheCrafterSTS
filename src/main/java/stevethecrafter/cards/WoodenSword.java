@@ -13,6 +13,7 @@ public class WoodenSword extends AbstractSteveCard {
         baseDamage = 6;
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) {
+        animateAttack();
         addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
     }
     @Override public void upgrade() { if (!upgraded) { upgradeName(); upgradeDamage(3); } }

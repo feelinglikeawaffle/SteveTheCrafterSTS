@@ -12,8 +12,11 @@ This document is the hand-off checklist for the next art pass. It intentionally 
 - The five character PNGs and one shared card placeholder PNG are present in the repository.
 - All ten card constructors currently point to the same `card_placeholder.png`.
 - `SteveInventory` currently reuses the vanilla Burning Blood relic texture.
-- Steve's combat animation still points to the vanilla Ironclad Spine animation.
-- A separate animation placeholder ZIP was generated for planning, but its PNG strips are not imported into this repository and are not wired into the game runtime.
+- The imported animation atlas and all eight strips are mirrored into the mod runtime resource folder.
+- Steve now uses a custom sprite-sheet AbstractAnimation renderer; attack, mining, block, and craft cards request their matching clips.
+- Walk, hurt, and death clips are present but still need lifecycle hooks; sprite scale, baseline, and timing remain unverified in-game.
+- The custom energy-orb layer files were not present, so Steve now uses BaseMod's built-in default orb instead of missing file paths.
+- The 12 material, 12 relic, 6 potion, and 4 room icons are mirrored into runtime resources but are not yet wired to custom UI.
 - `build.gradle` expects local Slay the Spire, ModTheSpire, and BaseMod JARs in `lib/`. Those JARs are not committed; there is no Gradle wrapper or configured CI build in this repository.
 - The code has not yet been compiled or tested in-game.
 
@@ -62,13 +65,9 @@ The relic folder and custom relic art are not yet implemented in code. The curre
 
 ### Character animation
 
-Current runtime: vanilla Ironclad Spine animation. This is a temporary compatibility fallback, not Steve's final animation.
+Current source runtime: custom `SteveSpriteAnimation` renderer using the imported 6x8 PNG atlas (96x128 frames). The renderer is connected to SteveCharacter and the card classes trigger sword, mining, block, and craft clips. It is a sprite-sheet animation, not a Spine rig.
 
-The previously generated 128x128 frame strips (idle, walk, attack, mine, hurt, death) are concept/blockout assets only. A PNG strip cannot be loaded by the current `SpineAnimation` constructor. Before replacing the runtime animation, choose and implement one supported route:
-1. Export a Spine skeleton + atlas + texture page compatible with the exact Spine runtime bundled with the target Slay the Spire/BaseMod version; or
-2. Implement and test a custom `AbstractAnimation` renderer that plays the frame strips.
-
-Do not rename the PNG strips to Spine filenames; the required skeleton/atlas data must match.
+The atlas and individual strips are mirrored into `src/main/resources/stevethecrafter/images/char/animation/`. The checker now includes their paths and dimensions. Walk, hurt, and death clips still need lifecycle hooks. The renderer has not yet been compiled or visually verified in-game, so scale, baseline, flip direction, and transitions remain open smoke-test items.
 
 ## Non-texture work still required
 
@@ -78,7 +77,7 @@ These are not solved by adding PNGs:
 2. Add a visible inventory/resource UI and resource spending/crafting behavior. The current resources are stored and gained but do not yet form a complete crafting loop.
 3. Expand the relic pool and implement relic-specific effects; only the starter relic exists.
 4. Implement the rest of the intended card pool and balance/test it.
-5. Implement custom Steve combat animation using one of the compatible routes above.
+5. Add lifecycle triggers for walk/hurt/death and verify all clip transitions in combat.
 6. Run the asset checker, build the JAR, launch the game, and verify character selection, combat, cards, relics, and animation.
 
 ## Definition of ready for final textures

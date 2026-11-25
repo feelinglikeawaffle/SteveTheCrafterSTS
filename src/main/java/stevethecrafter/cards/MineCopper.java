@@ -11,6 +11,7 @@ public class MineCopper extends AbstractSteveCard {
         super(ID, "Mine Copper", "card_placeholder.png", 1, "Gain 2 Copper.", CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) {
+        animateMine();
         addToBot(new GainResourceAction(SteveResource.COPPER, upgraded ? 3 : 2));
     }
     @Override public void upgrade() {

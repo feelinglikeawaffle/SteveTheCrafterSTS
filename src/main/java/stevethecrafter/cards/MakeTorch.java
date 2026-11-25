@@ -13,6 +13,7 @@ public class MakeTorch extends AbstractSteveCard {
         baseBlock = 5;
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) {
+        animateCraft();
         addToBot(new GainBlockAction(p, p, block));
         addToBot(new GainResourceAction(SteveResource.COAL, 1));
     }

@@ -13,6 +13,7 @@ public class MineRedstone extends AbstractSteveCard {
         baseBlock = 4;
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) {
+        animateMine();
         addToBot(new GainBlockAction(p, p, block));
         addToBot(new GainResourceAction(SteveResource.REDSTONE, 1));
     }

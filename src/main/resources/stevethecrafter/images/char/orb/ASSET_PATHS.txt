@@ -1,1 +1,1 @@
-Steve layered energy orb art goes in this folder. See ASSETS_NEEDED.md for exact files and dimensions.
+Custom Steve energy-orb layers are optional. The character currently uses BaseMod's built-in default orb because no custom layer PNGs are present. Add a complete matching orb set here only when custom orb art is ready.

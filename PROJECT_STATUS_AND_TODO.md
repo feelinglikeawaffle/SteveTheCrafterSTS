@@ -53,20 +53,22 @@ These are first-pass art assets. They should be reviewed in-game for transparenc
 - [x] `DESIGN.md`
 - [x] `ASSETS_NEEDED.md`
 - [x] `ASSET_IMPORT_GUIDE.md`
-- [x] `tools/check_assets.py`
+- [x] `scripts/check_assets.py`
 - [x] `PRE_TEXTURE_READINESS_AUDIT.md`
 - [x] This project status file.
 
-## 2. Prepared outside the repository (not integrated)
+## 2. Imported animation/art pack and current integration
 
-- [x] A temporary Steve animation placeholder ZIP was generated for hand-off:
-  `Steve_Animation_Placeholders.zip`
-- [x] It contains simple 128×128 PNG frame strips for idle, walk, attack, mine, hurt, and death, plus a combined preview and notes.
-- [ ] Those PNG strips have **not** been committed into the repository.
-- [ ] They are **not** connected to the Slay the Spire animation runtime.
-- [ ] They are blockout placeholders, not final Steve artwork or a finished character rig.
+- [x] The imported pixel-art pack is present in the original `character/`, `icons/`, and `rooms/` folders.
+- [x] The same image blobs are mirrored into `src/main/resources/stevethecrafter/images/` at runtime paths; original files were kept.
+- [x] The 6×8 Steve animation atlas and eight individual strips are imported.
+- [x] `SteveSpriteAnimation` reads the atlas through BaseMod's `AbstractAnimation` sprite-rendering path.
+- [x] Attack, mining, block, and craft cards request matching animation clips.
+- [x] Missing custom orb-layer references were replaced with BaseMod's default orb.
+- [ ] Compile and visually verify animation scale, baseline, flip, and timing in-game.
+- [ ] Connect walk, hurt, and death clips to relevant gameplay lifecycle events.
 
-The current character code still uses the vanilla Ironclad Spine animation as a temporary fallback. The generated PNG strips cannot simply be loaded by the existing SpineAnimation constructor.
+The atlas is a sprite-sheet animation, not a Spine skeleton export. Source integration is committed but is not marked tested until built and launched with the local game JARs.
 
 ## 3. Remaining implementation work (not textures)
 
@@ -90,13 +92,10 @@ The current character code still uses the vanilla Ironclad Spine animation as a 
 - [ ] Test resource gain/spending, card targeting, multi-enemy damage, upgrades, copies, save/load, and run transitions.
 
 ### Character animation
-- [ ] Choose a compatible animation implementation:
-  - Export a Spine skeleton, atlas, and texture page compatible with the exact Spine runtime used by the target game; or
-  - Implement and test a custom animation renderer that plays sprite frames.
-- [ ] Confirm the target game's animation API/runtime version before producing final animation exports.
-- [ ] Create and integrate Steve's idle, attack/tool swing, mining, hurt, and death animations.
+- [x] Implement a custom sprite-sheet animation renderer and connect it to SteveCharacter.
+- [x] Connect sword, mining, block, and crafting card plays to matching clips.
+- [ ] Connect walk, hurt, and death clips to gameplay lifecycle events.
 - [ ] Test animation timing, positioning, scale, looping, and transitions in combat.
-- [ ] Remove the temporary Ironclad animation fallback only after Steve's animation works.
 
 ## 4. Remaining texture/art work
 

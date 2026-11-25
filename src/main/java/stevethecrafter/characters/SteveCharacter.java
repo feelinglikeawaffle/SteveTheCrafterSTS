@@ -1,7 +1,6 @@
 package stevethecrafter.characters;
 
 import basemod.abstracts.CustomPlayer;
-import basemod.animations.SpineAnimation;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.MathUtils;
@@ -30,6 +29,16 @@ public class SteveCharacter extends CustomPlayer {
     private static final Color STEVE_COLOR = new Color(0.20F, 0.68F, 0.62F, 1.0F);
     private static final int RESOURCE_CAP = 99;
     public int coal, copper, iron, gold, redstone, lapis, diamond, emerald, ancientDebris;
+
+    /** Plays one of Steve's frame-based clips when Steve is the active character. */
+    public static void playAnimation(SteveSpriteAnimation.Clip clip) {
+        if (AbstractDungeon.player instanceof SteveCharacter) {
+            SteveCharacter steve = (SteveCharacter) AbstractDungeon.player;
+            if (steve.animation instanceof SteveSpriteAnimation) {
+                ((SteveSpriteAnimation) steve.animation).play(clip);
+            }
+        }
+    }
 
     /** Adds a material to Steve's capped run inventory. */
     public void gainResource(SteveResource resource, int amount) {
@@ -65,22 +74,7 @@ public class SteveCharacter extends CustomPlayer {
     }
 
     public SteveCharacter(String name) {
-        super(name, SteveEnums.STEVE,
-                new String[] {
-                    "images/char/orb/layer1.png",
-                    "images/char/orb/layer2.png",
-                    "images/char/orb/layer3.png",
-                    "images/char/orb/layer4.png",
-                    "images/char/orb/layer5.png",
-                    "images/char/orb/layer6.png",
-                    "images/char/orb/layer1d.png",
-                    "images/char/orb/layer2d.png",
-                    "images/char/orb/layer3d.png",
-                    "images/char/orb/layer4d.png",
-                    "images/char/orb/layer5d.png"
-                },
-                "images/char/orb/vfx.png",
-                new SpineAnimation("images/characters/ironclad/animation/ironclad.atlas"));
+        super(name, SteveEnums.STEVE, null, null, new SteveSpriteAnimation());
 
         initializeClass(null,
                 SteveTheCrafterMod.makePath("images/char/shoulder2.png"),

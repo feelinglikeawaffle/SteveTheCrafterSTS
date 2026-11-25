@@ -1,48 +1,59 @@
-# Steve the Crafter — asset checklist (easy mode)
+# Steve the Crafter — asset checklist
 
-The mod now reuses Slay the Spire's built-in energy orb, character animation, and card frames. **You do not need to draw orb layers, card frames, or a Spriter animation.** We only need Steve's character art and one temporary shared card illustration to start.
+The first-pass art pack is already imported into GitHub and mirrored into the mod's runtime resource folder. The original art folders are kept as backups/source copies.
 
 Repository: https://github.com/feelinglikeawaffle/SteveTheCrafterSTS
 
-## Upload from your phone
-
-1. Open the repository link and switch to the **main** branch.
-2. Tap **Add file → Upload files**.
-3. Select the PNGs from your phone and upload them into the exact folder below.
-4. If the folder doesn't exist, tap **Add file → Create new file**, enter a path ending in `README.md`, type `assets go here`, and commit. Then upload the PNGs.
-5. Commit to main. Tell me “uploaded the Steve assets” and I can check the exact paths.
-
-Use any drawing app that exports PNG. Art direction: original Minecraft Live / Mob Vote-inspired illustration—blocky proportions, expressive face, clean illustrated shading. Do not copy official promotional art. Draw one Steve reference first and keep his face, hair, turquoise shirt, blue pants, and proportions consistent.
-
-## Required character art
+## Existing character art
 
 Folder: `src/main/resources/stevethecrafter/images/char/`
 
-| Exact filename | Canvas | What it should show |
-|---|---:|---|
-| `charSelect.png` | 256×256 | Full-body Steve holding a pickaxe; transparent background |
-| `portrait.png` | 1000×1000 | Chest-up Steve, confident/friendly expression, simple cave or crafting background |
-| `shoulder1.png` | 256×256 | Steve upper body facing inward/right toward the cards; transparent |
-| `shoulder2.png` | 256×256 | Matching upper body facing inward/left; transparent |
-| `corpse.png` | 256×256 | Defeated Steve pose, clear silhouette; transparent |
+- `charSelect.png` — 256×256
+- `portrait.png` — 1000×1000
+- `shoulder1.png` — 256×256
+- `shoulder2.png` — 256×256
+- `corpse.png` — 256×256
 
-Transparent background is important for the character-select button, shoulders, and corpse. Keep Steve's face large enough to read at small size.
-
-## One temporary card image
+## Existing card art
 
 Folder: `src/main/resources/stevethecrafter/images/cards/`
 
-- `card_placeholder.png` — 512×512 PNG. A simple Minecraft-themed illustration (Steve with a wooden pickaxe, crafting table, or ore) on a square canvas. **The first five starter cards all use this same temporary image**, so you only need to make one card image now. Later, I can replace it with individual card art.
+- `card_placeholder.png` — 512×512
 
-## No need to create these
+All 10 current cards still use this shared placeholder. Unique card art can be added later without changing the animation import.
 
-The code uses the game's built-in assets for:
-- energy orb layers and orb effects
-- character animation (temporary Ironclad animation skeleton; Steve's shoulder art still displays)
-- custom card frames and card orbs
+## Imported Steve animation
 
-You do **not** need `animation.scml`, 12 orb PNGs, or the 9 card-frame textures listed in the older guide.
+Runtime folder: `src/main/resources/stevethecrafter/images/char/animation/`
 
-## What is implemented vs. what is next
+- `steve_animation_atlas.png` — 576×1024 (6 columns × 8 rows; 96×128 frames)
+- `idle_strip.png`, `walk_strip.png`, `mine_strip.png`, `sword_strip.png`
+- `block_strip.png`, `hurt_strip.png`, `death_strip.png`, `craft_strip.png`
+- `animation_frames.json`
 
-The repository has the design blueprint and the first five custom starter-card classes plus a capped resource storage/action system. This is still an early scaffold and has **not been compiled or tested in Slay the Spire yet**. The next implementation work is the visible inventory UI, Steve's Inventory starter relic, the rest of the card pool, and the Crafting Table/event rooms. I will not call it playable until the build and in-game checks pass.
+The custom `SteveSpriteAnimation` renderer is now connected to the character. Idle loops; card plays trigger sword, mining, block, and craft clips. Walk/hurt/death are included but still need lifecycle hooks and in-game testing.
+
+## Imported icons and room art
+
+These files are also mirrored to runtime paths:
+
+- `images/materials/` — 12 icons, 32×32
+- `images/relics/` — 12 icons, 64×64
+- `images/potions/` — 6 icons, 32×40
+- `images/rooms/` — 4 illustrations, 256×256
+
+They are available as mod resources, but aren't yet connected to a custom inventory, relic, potion, or room UI.
+
+## Energy orb
+
+No custom orb layers are required right now. Steve uses BaseMod's built-in default orb because the custom layer files weren't included. This avoids missing-resource paths.
+
+## Verify the import
+
+From the repository root:
+
+```bash
+python scripts/check_assets.py
+```
+
+The checker now verifies the runtime file paths and expected dimensions for the full art pack. The source integration has not yet been compiled or tested in Slay the Spire; the first run should verify character positioning and animation timing.

@@ -10,7 +10,8 @@ public class WoodenShield extends AbstractSteveCard {
         super(ID, "Wooden Shield", "card_placeholder.png", 1, "Gain !B! Block.", CardType.SKILL, CardRarity.BASIC, CardTarget.SELF);
         baseBlock = 5;
     }
-    @Override public void use(AbstractPlayer p, AbstractMonster m) { addToBot(new GainBlockAction(p, p, block)); }
+    @Override public void use(AbstractPlayer p, AbstractMonster m) {
+        animateBlock(); addToBot(new GainBlockAction(p, p, block)); }
     @Override public void upgrade() { if (!upgraded) { upgradeName(); upgradeBlock(3); } }
     @Override public AbstractSteveCard makeCopy() { return new WoodenShield(); }
 }

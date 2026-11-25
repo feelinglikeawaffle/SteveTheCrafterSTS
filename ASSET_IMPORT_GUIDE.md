@@ -1,57 +1,54 @@
-# Asset import guide
+# Steve the Crafter — Asset Import & Verification
 
-This project keeps art in one predictable place. You can upload PNGs through GitHub's website; you do not need to edit Java to replace an image that already has a registered path.
+The complete first-pass pixel-art pack has been imported into the repository and mirrored into the mod's runtime resources. Original top-level art folders remain as source/archive copies.
 
-## 1. Upload the starter character art
+## Runtime asset folders
 
-Open the repository on GitHub, choose **Add file → Upload files**, and upload these files to:
+All runtime files are under `src/main/resources/stevethecrafter/images/`.
 
-`src/main/resources/stevethecrafter/images/char/`
+| Folder | Contents |
+|---|---|
+| `char/` | Character-select, portrait, shoulders, and corpse art |
+| `char/animation/` | Steve's 6×8 animation atlas, individual strips, and frame metadata |
+| `materials/` | 12 Minecraft material icons |
+| `relics/` | 12 relic icons |
+| `potions/` | 6 potion icons |
+| `rooms/` | 4 room illustrations |
+| `cards/` | Shared card placeholder (still used by all 10 current cards) |
 
-| Filename | Suggested size | Purpose |
-|---|---:|---|
-| `charSelect.png` | 256 × 256 | Full-body Steve for the character selection screen |
-| `portrait.png` | 1000 × 1000 | Character portrait |
-| `shoulder1.png` | 256 × 256 | Combat-side shoulder art |
-| `shoulder2.png` | 256 × 256 | Opposite combat-side shoulder art |
-| `corpse.png` | 256 × 256 | Defeated character image |
+The runtime copies use the same Git blob contents as the imported art-pack files in `character/`, `icons/`, and `rooms/`; the original copies were not deleted.
 
-Use PNG. Keep transparent backgrounds on the shoulder and corpse images. These are suggested canvas sizes; keep the important subject centered with some padding.
+## Steve's animation
 
-## 2. Upload card art
+The character now uses the custom `SteveSpriteAnimation` renderer and loads:
 
-Upload `card_placeholder.png` to:
+`stevethecrafter/images/char/animation/steve_animation_atlas.png`
 
-`src/main/resources/stevethecrafter/images/cards/`
+Atlas layout: 6 columns × 8 rows, 96×128 pixels per frame.
 
-Use a 512 × 512 PNG. The five starter cards currently share this one image, so you only need one card illustration to begin. Individual card images can be added later and assigned in their card classes.
+- Idle loops by default.
+- Attack cards play the sword swing.
+- Pickaxe/mining cards play the mining animation.
+- Shield cards play the block animation.
+- Torch/enchant cards play the crafting animation.
+- Walk, hurt, and death frames are included; their gameplay lifecycle hooks and in-game timing/position still need verification.
 
-## 3. What about animations?
+The renderer uses a sprite sheet, not a Spine skeleton. You do not need to draw or export a Spine rig.
 
-The current character class temporarily uses Slay the Spire's built-in Ironclad Spine animation. That means **you do not need to upload an animation to get the current character scaffold running**.
+## Energy orb
 
-A custom animated Steve is a separate asset task. It needs a Spine export compatible with the game's bundled Spine runtime (skeleton data, atlas, and referenced texture pages). A GIF or ordinary MP4 cannot be dropped in as the in-combat character animation. Do not rename an unrelated animation to make it fit; the skeleton and atlas must match.
+The custom orb layer images were not present. Steve now uses BaseMod's built-in default energy orb instead of referencing missing files. This is a safe fallback; custom teal orb art can be added later.
 
-When a compatible Steve Spine export is ready, put its files in:
+## Check the import
 
-`src/main/resources/stevethecrafter/images/char/animation/`
-
-Then the Java animation loader can be switched from the temporary Ironclad animation to Steve's export. The exact filenames and loader call will be documented once the export format/runtime version is confirmed.
-
-## 4. Check your files before building
-
-From the repository root, run:
+From the repository root:
 
 ```bash
 python scripts/check_assets.py
 ```
 
-The checker reports missing files and incorrect PNG dimensions. It does not modify or resize your art.
+The checker validates paths and PNG dimensions for character art, all animation sheets, 12 materials, 12 relics, 6 potions, and 4 rooms. It also checks animation metadata.
 
-## 5. Commit and verify
+## Current limitation
 
-1. Commit the uploaded files to the `main` branch.
-2. Run the asset checker.
-3. Build and launch the mod to verify that transparent edges, scale, and positioning look right in-game.
-
-For the complete starter-art checklist, see [ASSETS_NEEDED.md](ASSETS_NEEDED.md).
+Asset paths and the renderer are in source, but the mod has not yet been compiled or launched in Slay the Spire here. The first in-game run should check Steve's size, baseline, flip direction, and clip timing. Material/relic/potion/room art is available as runtime resources but is not yet connected to custom inventory or other UI.

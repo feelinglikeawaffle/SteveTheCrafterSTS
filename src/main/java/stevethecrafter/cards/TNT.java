@@ -14,6 +14,7 @@ public class TNT extends AbstractSteveCard {
         isMultiDamage = true;
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) {
+        animateAttack();
         addToBot(new DamageAllEnemiesAction(p, multiDamage, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.FIRE));
     }
     @Override public void upgrade() { if (!upgraded) { upgradeName(); upgradeDamage(4); } }

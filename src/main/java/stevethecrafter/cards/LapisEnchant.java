@@ -12,6 +12,7 @@ public class LapisEnchant extends AbstractSteveCard {
         super(ID, "Lapis Enchantment", "card_placeholder.png", 1, "Gain 1 Lapis. Draw 1 card.", CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) {
+        animateCraft();
         addToBot(new GainResourceAction(SteveResource.LAPIS, upgraded ? 2 : 1));
         addToBot(new DrawCardAction(p, 1));
     }
