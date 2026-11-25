@@ -2,6 +2,9 @@ package stevethecrafter.actions;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.ui.dialogue.TalkAction;
+import com.megacrit.cardcrawl.helpers.TipHelper;
+import com.megacrit.cardcrawl.vfx.ThoughtBubble;
 import stevethecrafter.characters.SteveCharacter;
 import stevethecrafter.resources.SteveResource;
 
@@ -16,7 +19,11 @@ public class GainResourceAction extends AbstractGameAction {
     }
     @Override public void update() {
         if (AbstractDungeon.player instanceof SteveCharacter) {
-            ((SteveCharacter) AbstractDungeon.player).gainResource(resource, amount);
+            SteveCharacter steve = (SteveCharacter) AbstractDungeon.player;
+            steve.gainResource(resource, amount);
+            int total = steve.getResource(resource);
+            AbstractDungeon.effectList.add(new ThoughtBubble(steve.dialogX, steve.dialogY, 2.0F,
+                    "+" + amount + " " + resource.name().replace('_', ' ') + " (" + total + ")", true));
         }
         isDone = true;
     }
