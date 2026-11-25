@@ -94,7 +94,7 @@ The atlas is a sprite-sheet animation, not a Spine skeleton export. Source integ
 ### Character animation
 - [x] Implement a custom sprite-sheet animation renderer and connect it to SteveCharacter.
 - [x] Connect sword, mining, block, and crafting card plays to matching clips.
-- [ ] Connect walk, hurt, and death clips to gameplay lifecycle events.
+- [x] Connect hurt/death clips to player damage; keep walk available for future movement transitions.
 - [ ] Test animation timing, positioning, scale, looping, and transitions in combat.
 
 ## 4. Remaining texture/art work

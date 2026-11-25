@@ -14,7 +14,7 @@ This document is the hand-off checklist for the next art pass. It intentionally 
 - `SteveInventory` currently reuses the vanilla Burning Blood relic texture.
 - The imported animation atlas and all eight strips are mirrored into the mod runtime resource folder.
 - Steve now uses a custom sprite-sheet AbstractAnimation renderer; attack, mining, block, and craft cards request their matching clips.
-- Walk, hurt, and death clips are present but still need lifecycle hooks; sprite scale, baseline, and timing remain unverified in-game.
+- Hurt and death clips are hooked after player damage; walk is available for future movement transitions. Sprite scale, baseline, and timing remain unverified in-game.
 - The custom energy-orb layer files were not present, so Steve now uses BaseMod's built-in default orb instead of missing file paths.
 - The 12 material, 12 relic, 6 potion, and 4 room icons are mirrored into runtime resources but are not yet wired to custom UI.
 - `build.gradle` expects local Slay the Spire, ModTheSpire, and BaseMod JARs in `lib/`. Those JARs are not committed; there is no Gradle wrapper or configured CI build in this repository.
@@ -77,7 +77,7 @@ These are not solved by adding PNGs:
 2. Add a visible inventory/resource UI and resource spending/crafting behavior. The current resources are stored and gained but do not yet form a complete crafting loop.
 3. Expand the relic pool and implement relic-specific effects; only the starter relic exists.
 4. Implement the rest of the intended card pool and balance/test it.
-5. Add lifecycle triggers for walk/hurt/death and verify all clip transitions in combat.
+5. Add a walk transition if a future movement/transition hook is needed; verify hurt/death and all clip transitions in combat.
 6. Run the asset checker, build the JAR, launch the game, and verify character selection, combat, cards, relics, and animation.
 
 ## Definition of ready for final textures

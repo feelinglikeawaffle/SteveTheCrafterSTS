@@ -31,7 +31,7 @@ Atlas layout: 6 columns × 8 rows, 96×128 pixels per frame.
 - Pickaxe/mining cards play the mining animation.
 - Shield cards play the block animation.
 - Torch/enchant cards play the crafting animation.
-- Walk, hurt, and death frames are included; their gameplay lifecycle hooks and in-game timing/position still need verification.
+- Walk is included for future movement transitions. Hurt and death now trigger from Steve's player-damage patch; their in-game timing/position still need verification.
 
 The renderer uses a sprite sheet, not a Spine skeleton. You do not need to draw or export a Spine rig.
 
