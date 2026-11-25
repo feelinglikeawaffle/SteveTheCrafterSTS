@@ -1,40 +1,61 @@
 # Steve character assets — exact checklist
 
-The character class is now wired to these paths. **Steve will not launch until the required assets exist.** Please upload the files to this GitHub repository, keeping names and folder paths exactly as written.
+Steve's initial Java character class and character registration have been added. The game still needs image assets before it can load the character. Upload assets to this repository, keeping filenames and folders exactly as listed.
 
 Repository: https://github.com/feelinglikeawaffle/SteveTheCrafterSTS
 
-## Where to upload
+## How to upload a PNG on GitHub (phone or computer)
 
-Open the repository on GitHub. For PNG files, choose **Add file → Upload files**. Upload into the specified folder path; GitHub will create the folder if needed. For text files, use **Add file → Create new file**.
+1. Open the repository link above and make sure you are on the **main** branch.
+2. Tap/click **Add file** → **Upload files**.
+3. Select the PNG from your device.
+4. If the target folder does not exist yet, use **Add file** → **Create new file**, type the folder path plus a filename like `src/main/resources/stevethecrafter/images/char/KEEP.txt`, and commit it. Then upload the image into that folder.
+5. Commit the upload. Send me a message saying which assets you uploaded; I'll wire/check them in the mod.
 
-## Character artwork
+For creating artwork, use any drawing app you already have. Export as PNG. Transparent background is preferred for the character cutouts.
 
-Folder: src/main/resources/stevethecrafter/images/char/
+## First assets to make/upload
 
-- charSelect.png — character selection button, full-body Steve; 256×256 PNG, transparent background.
-- portrait.png — large character selection portrait; 1000×1000 PNG.
-- shoulder1.png — combat shoulder art; 256×256 PNG, transparent.
-- shoulder2.png — alternate combat shoulder art; 256×256 PNG, transparent.
-- corpse.png — defeated Steve image; 256×256 PNG, transparent.
+Folder: `src/main/resources/stevethecrafter/images/char/`
 
-Style: Minecraft Live / Mob Vote-inspired 2D illustration. Chunky recognizable Minecraft proportions, expressive face, clean stylized shading, blocky clothes/tools. Keep all art consistent. Make original fan art rather than extracting official promotional artwork.
+- `charSelect.png` — Steve's small character-select button artwork. Full-body, recognizable silhouette, centered. 256×256 PNG, transparent.
+- `portrait.png` — larger character select portrait, Steve from waist/chest up with a simple Minecraft-themed background. 1000×1000 PNG.
+- `shoulder1.png` — combat shoulder portrait, Steve facing inward toward the screen. 256×256 PNG, transparent.
+- `shoulder2.png` — alternate combat shoulder portrait, similar pose facing inward. 256×256 PNG, transparent.
+- `corpse.png` — defeated Steve portrait. 256×256 PNG, transparent.
 
-## Animation and energy orb
+**Art direction:** Minecraft Live / Mob Vote-inspired 2D illustration: chunky blocky proportions, recognizable Steve face, expressive pose, clean illustrated shading, consistent colors. Keep Steve's face, hair, shirt, and pants consistent across all five images. Use original fan art, not ripped official art.
 
-The current code expects a Spriter animation file at:
-src/main/resources/stevethecrafter/images/char/animation.scml
+## Energy orb textures
 
-The SCML must reference its sprite PNGs in the same character folder (or its own referenced relative paths). It needs a looping idle and appropriate animation states. If you do not have Spriter, tell me; we can change to a simpler animation approach instead of making you install software.
+Folder: `src/main/resources/stevethecrafter/images/char/orb/`
 
-Orb folder: src/main/resources/stevethecrafter/images/char/orb/
+Transparent PNG files required by the current code:
+- `layer1.png`, `layer2.png`, `layer3.png`, `layer4.png`, `layer5.png`, `layer6.png`
+- `layer1d.png`, `layer2d.png`, `layer3d.png`, `layer4d.png`, `layer5d.png`
+- `vfx.png`
 
-Required transparent PNGs: layer1.png through layer6.png; layer1d.png through layer5d.png; and vfx.png. Suggested source canvas 128×128 per layer, centered and aligned.
+Suggested size: 128×128 each, same center/alignment. These are layered circular energy orb textures, not pictures of Steve. I can give you a simpler visual template later; don't spend time on these before the first character art.
 
-## Cards later
+## Character animation
 
-We do not need card art yet. I will provide a separate exact checklist when we add the first custom cards.
+The current Java class uses a Spriter animation file:
+`src/main/resources/stevethecrafter/images/char/animation.scml`
 
-## If you want me to generate art
+It must reference its animation sprite PNGs. A valid Spriter file is a specialized asset; **do not try to hand-write this**. If you don't already have Spriter, tell me and I'll change the character animation approach / provide a simpler placeholder plan.
 
-Start with the character-select button and portrait. I can help create the illustrations, but the image files must then be uploaded to the exact folders above so the mod can load them.
+## Card-frame assets (required for Steve's custom card color)
+
+Folders:
+- `src/main/resources/stevethecrafter/images/card/512/`
+- `src/main/resources/stevethecrafter/images/card/1024/`
+
+The custom color registration expects:
+- 512: `bg_attack.png`, `bg_skill.png`, `bg_power.png`, `card_orb.png`, `card_small_orb.png`
+- 1024: `bg_attack.png`, `bg_skill.png`, `bg_power.png`, `card_orb.png`
+
+These are Slay the Spire card frame/background textures. We can postpone custom frames and temporarily use an existing card color while the first playable build is made; I will adjust registration if you prefer not to create these yourself.
+
+## Card illustrations later
+
+No individual card illustrations are needed yet. Once Steve's first cards are implemented, I'll provide a separate list with each card's exact filename, what to draw, and its recommended canvas.
