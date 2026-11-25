@@ -23,15 +23,15 @@ public class SteveTheCrafterMod implements EditCharactersSubscriber, EditCardsSu
         BaseMod.subscribe(this);
         BaseMod.addColor(SteveEnums.STEVE_COLOR,
                 STEVE_TEAL, STEVE_TEAL, STEVE_TEAL, STEVE_TEAL, STEVE_TEAL, STEVE_TEAL, STEVE_TEAL,
-                makePath("images/card/512/bg_attack.png"),
-                makePath("images/card/512/bg_skill.png"),
-                makePath("images/card/512/bg_power.png"),
-                makePath("images/card/512/card_orb.png"),
-                makePath("images/card/1024/bg_attack.png"),
-                makePath("images/card/1024/bg_skill.png"),
-                makePath("images/card/1024/bg_power.png"),
-                makePath("images/card/1024/card_orb.png"),
-                makePath("images/card/512/card_small_orb.png"));
+                "images/512/cardui/card_bg_attack.png",
+                "images/512/cardui/card_bg_skill.png",
+                "images/512/cardui/card_bg_power.png",
+                "images/512/cardui/card_orb.png",
+                "images/1024/cardui/card_bg_attack.png",
+                "images/1024/cardui/card_bg_skill.png",
+                "images/1024/cardui/card_bg_power.png",
+                "images/1024/cardui/card_orb.png",
+                "images/512/cardui/card_small_orb.png");
     }
 
     public static void initialize() {
