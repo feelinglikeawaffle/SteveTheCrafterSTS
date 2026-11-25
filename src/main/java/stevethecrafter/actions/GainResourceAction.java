@@ -2,8 +2,6 @@ package stevethecrafter.actions;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.ui.dialogue.TalkAction;
-import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.vfx.ThoughtBubble;
 import stevethecrafter.characters.SteveCharacter;
 import stevethecrafter.resources.SteveResource;
