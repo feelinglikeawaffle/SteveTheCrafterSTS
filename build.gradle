@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+}
+
+group = 'stevethecrafter'
+version = '0.1.0'
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+repositories {
+    mavenCentral()
+}
+
+// Put your locally installed game/mod framework jars in ./lib (not committed).
+// Exact jar filenames can vary by installation; adjust these entries if needed.
+dependencies {
+    compileOnly files('lib/desktop-1.0.jar')
+    compileOnly files('lib/ModTheSpire.jar')
+    compileOnly files('lib/BaseMod.jar')
+}
+
+jar {
+    archiveBaseName = 'SteveTheCrafterSTS'
+    from('src/main/resources')
+}
