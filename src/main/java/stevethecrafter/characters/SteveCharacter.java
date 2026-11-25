@@ -57,11 +57,11 @@ public class SteveCharacter extends CustomPlayer {
 
     @Override public ArrayList<String> getStartingDeck() {
         ArrayList<String> deck = new ArrayList<>();
-        for (int i = 0; i < 4; i++) deck.add("Strike_P");
-        for (int i = 0; i < 4; i++) deck.add("Defend_P");
-        // Temporary vanilla starter until Steve's custom cards are registered.
-        deck.add("Strike_P");
-        deck.add("Defend_P");
+        for (int i = 0; i < 4; i++) deck.add("stevethecrafter:WoodenSword");
+        for (int i = 0; i < 2; i++) deck.add("stevethecrafter:WoodenPickaxe");
+        for (int i = 0; i < 2; i++) deck.add("stevethecrafter:WoodenShield");
+        deck.add("stevethecrafter:MineCoal");
+        deck.add("stevethecrafter:MakeTorch");
         return deck;
     }
 
