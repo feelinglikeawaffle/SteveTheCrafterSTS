@@ -19,13 +19,14 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import stevethecrafter.SteveTheCrafterMod;
 import stevethecrafter.patches.SteveEnums;
+import stevethecrafter.resources.SteveResource;
 
 import java.util.ArrayList;
 
 /** Steve's selectable character shell. */
 public class SteveCharacter extends CustomPlayer {
     public static final int ENERGY_PER_TURN = 3;
-    private static final Color STEVE_COLOR = new Color(0.20F, 0.68F, 0.62F, 1.0F);
+    private static final Color STEVE_COLOR = new Color(0.20F, 0.68F, 0.62F, 1.0F);\n    private static final int RESOURCE_CAP = 99;\n    public int coal, iron, gold, diamond, emerald, ancientDebris;
 
     public SteveCharacter(String name) {
         super(name, SteveEnums.STEVE,
@@ -69,6 +70,30 @@ public class SteveCharacter extends CustomPlayer {
         relics.add("Burning Blood");
         UnlockTracker.markRelicAsSeen("Burning Blood");
         return relics;
+    }
+
+    public void gainResource(SteveResource resource, int amount) {
+        if (amount <= 0) return;
+        switch (resource) {
+            case COAL: coal = Math.min(RESOURCE_CAP, coal + amount); break;
+            case IRON: iron = Math.min(RESOURCE_CAP, iron + amount); break;
+            case GOLD: gold = Math.min(RESOURCE_CAP, gold + amount); break;
+            case DIAMOND: diamond = Math.min(RESOURCE_CAP, diamond + amount); break;
+            case EMERALD: emerald = Math.min(RESOURCE_CAP, emerald + amount); break;
+            case ANCIENT_DEBRIS: ancientDebris = Math.min(RESOURCE_CAP, ancientDebris + amount); break;
+        }
+    }
+
+    public int getResource(SteveResource resource) {
+        switch (resource) {
+            case COAL: return coal;
+            case IRON: return iron;
+            case GOLD: return gold;
+            case DIAMOND: return diamond;
+            case EMERALD: return emerald;
+            case ANCIENT_DEBRIS: return ancientDebris;
+            default: return 0;
+        }
     }
 
     @Override public CharSelectInfo getLoadout() {
