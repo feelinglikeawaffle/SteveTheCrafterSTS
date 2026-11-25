@@ -1,0 +1,10 @@
+{
+  "modid": "stevethecrafter",
+  "name": "Steve the Crafter",
+  "author_list": ["feelinglikeawaffle"],
+  "description": "A Minecraft-inspired Slay the Spire character focused on mining, crafting, and equipment.",
+  "version": "0.1.0",
+  "sts_version": "12-22-2020",
+  "mts_version": "3.30.3",
+  "dependencies": ["basemod"]
+}
