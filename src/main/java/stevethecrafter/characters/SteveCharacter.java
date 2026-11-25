@@ -20,6 +20,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import stevethecrafter.SteveTheCrafterMod;
 import stevethecrafter.patches.SteveEnums;
 import stevethecrafter.resources.SteveResource;
+import stevethecrafter.relics.SteveInventory;
 
 import java.util.ArrayList;
 
@@ -68,34 +69,9 @@ public class SteveCharacter extends CustomPlayer {
 
     @Override public ArrayList<String> getStartingRelics() {
         ArrayList<String> relics = new ArrayList<>();
-        // Steve's Inventory will replace this placeholder in the next milestone.
-        relics.add("Burning Blood");
-        UnlockTracker.markRelicAsSeen("Burning Blood");
+        relics.add(SteveInventory.ID);
+        UnlockTracker.markRelicAsSeen(SteveInventory.ID);
         return relics;
-    }
-
-    public void gainResource(SteveResource resource, int amount) {
-        if (amount <= 0) return;
-        switch (resource) {
-            case COAL: coal = Math.min(RESOURCE_CAP, coal + amount); break;
-            case IRON: iron = Math.min(RESOURCE_CAP, iron + amount); break;
-            case GOLD: gold = Math.min(RESOURCE_CAP, gold + amount); break;
-            case DIAMOND: diamond = Math.min(RESOURCE_CAP, diamond + amount); break;
-            case EMERALD: emerald = Math.min(RESOURCE_CAP, emerald + amount); break;
-            case ANCIENT_DEBRIS: ancientDebris = Math.min(RESOURCE_CAP, ancientDebris + amount); break;
-        }
-    }
-
-    public int getResource(SteveResource resource) {
-        switch (resource) {
-            case COAL: return coal;
-            case IRON: return iron;
-            case GOLD: return gold;
-            case DIAMOND: return diamond;
-            case EMERALD: return emerald;
-            case ANCIENT_DEBRIS: return ancientDebris;
-            default: return 0;
-        }
     }
 
     @Override public CharSelectInfo getLoadout() {
