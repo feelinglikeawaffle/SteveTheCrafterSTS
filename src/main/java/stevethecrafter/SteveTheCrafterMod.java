@@ -43,6 +43,15 @@ public class SteveTheCrafterMod implements EditCharactersSubscriber, EditCardsSu
     }
 
     @Override
+    public void receiveEditCards() {
+        BaseMod.addCard(new WoodenSword());
+        BaseMod.addCard(new WoodenPickaxe());
+        BaseMod.addCard(new WoodenShield());
+        BaseMod.addCard(new MineCoal());
+        BaseMod.addCard(new MakeTorch());
+    }
+
+    @Override
     public void receiveEditCharacters() {
         BaseMod.addCharacter(new SteveCharacter("Steve"),
                 makePath("images/char/charSelect.png"),
