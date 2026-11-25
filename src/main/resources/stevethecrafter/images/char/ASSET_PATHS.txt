@@ -1,0 +1,1 @@
+Steve character art goes in this folder. See ASSETS_NEEDED.md for exact files and dimensions.
