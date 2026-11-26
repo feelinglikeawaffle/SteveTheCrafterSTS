@@ -5,7 +5,6 @@ import basemod.interfaces.EditCharactersSubscriber;
 import basemod.interfaces.EditCardsSubscriber;
 import basemod.interfaces.EditRelicsSubscriber;
 import basemod.interfaces.EditStringsSubscriber;
-import com.badlogic.gdx.graphics.Color;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import stevethecrafter.characters.SteveCharacter;
 import stevethecrafter.patches.SteveEnums;
@@ -25,22 +24,11 @@ import stevethecrafter.relics.SteveInventory;
 @SpireInitializer
 public class SteveTheCrafterMod implements EditCharactersSubscriber, EditCardsSubscriber, EditRelicsSubscriber, EditStringsSubscriber {
     public static final String MOD_ID = "stevethecrafter";
-    private static final Color STEVE_TEAL = new Color(0.20F, 0.68F, 0.62F, 1.0F);
 
     public SteveTheCrafterMod() {
         BaseMod.subscribe(this);
-
-        BaseMod.addColor(SteveEnums.STEVE_COLOR,
-                STEVE_TEAL, STEVE_TEAL, STEVE_TEAL, STEVE_TEAL, STEVE_TEAL, STEVE_TEAL, STEVE_TEAL,
-                "images/512/cardui/card_bg_attack.png",
-                "images/512/cardui/card_bg_skill.png",
-                "images/512/cardui/card_bg_power.png",
-                "images/512/cardui/card_orb.png",
-                "images/1024/cardui/card_bg_attack.png",
-                "images/1024/cardui/card_bg_skill.png",
-                "images/1024/cardui/card_bg_power.png",
-                "images/1024/cardui/card_orb.png",
-                "images/512/cardui/card_small_orb.png");
+        // Steve currently uses the built-in BLUE card color. This deliberately
+        // avoids registering nonexistent custom card-background/orb textures.
     }
 
     public static void initialize() {
