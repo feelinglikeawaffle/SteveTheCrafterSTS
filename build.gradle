@@ -22,5 +22,4 @@ dependencies {
 
 jar {
     archiveBaseName = 'SteveTheCrafterSTS'
-    from('src/main/resources')
 }
