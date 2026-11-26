@@ -3,17 +3,14 @@ package stevethecrafter.patches;
 import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.helpers.CardLibrary;
 
-/** Custom class, card color, and card-library IDs used by Steve. */
+/** Steve's character ID and a supported built-in card color. */
 public class SteveEnums {
     @SpireEnum(name = "STEVE")
     public static AbstractPlayer.PlayerClass STEVE;
 
-    @SpireEnum(name = "STEVE")
-    public static AbstractCard.CardColor STEVE_COLOR;
-
-    // BaseMod's custom color tab looks up a LibraryType with the same enum name.
-    @SpireEnum(name = "STEVE")
-    public static CardLibrary.LibraryType STEVE_LIBRARY_COLOR;
+    // Use the game's built-in blue textures until Steve's complete custom card
+    // texture set is bundled. A custom CardColor without registered textures
+    // causes null card backgrounds/orbs during combat rendering.
+    public static final AbstractCard.CardColor STEVE_COLOR = AbstractCard.CardColor.BLUE;
 }
