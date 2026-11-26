@@ -97,6 +97,29 @@ def main():
     else:
         print("NOTE      Run the Gradle build to generate and check 250x190 / 500x380 card portraits.")
 
+    # Custom Steve colour textures are extracted and tinted from the local game JAR.
+    colour_root = ROOT / "build/resources/main/stevethecrafter/images"
+    colour_paths = [
+        "512/cardui/card_bg_attack.png", "512/cardui/card_bg_skill.png",
+        "512/cardui/card_bg_power.png", "512/cardui/card_orb.png",
+        "512/cardui/card_small_orb.png", "1024/cardui/card_bg_attack.png",
+        "1024/cardui/card_bg_skill.png", "1024/cardui/card_bg_power.png",
+        "1024/cardui/card_orb.png"
+    ]
+    if colour_root.exists():
+        for relative in colour_paths:
+            path = colour_root / relative
+            if not path.is_file():
+                missing.append(str(path.relative_to(ROOT)))
+                print(f"MISSING   {path.relative_to(ROOT)}")
+            elif png_size(path) is None:
+                invalid.append(str(path.relative_to(ROOT)))
+                print(f"NOT PNG   {path.relative_to(ROOT)}")
+            else:
+                print(f"OK        {path.relative_to(ROOT)}")
+    else:
+        print("NOTE      Run the Gradle build to generate Steve's custom card-colour textures.")
+
     print()
     if missing or wrong_size or invalid:
         print(f"Needs attention: {len(missing)} missing, {len(wrong_size)} wrong-size, {len(invalid)} invalid.")
