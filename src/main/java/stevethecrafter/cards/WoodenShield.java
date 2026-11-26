@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 public class WoodenShield extends AbstractSteveCard {
     public static final String ID = "stevethecrafter:WoodenShield";
     public WoodenShield() {
-        super(ID, "Wooden Shield", "card_placeholder.png", 1, "Gain !B! Block.", CardType.SKILL, CardRarity.BASIC, CardTarget.SELF);
+        super(ID, "Wooden Shield", "images/relics/shield.png", 1, "Gain !B! Block.", CardType.SKILL, CardRarity.BASIC, CardTarget.SELF);
         baseBlock = 5;
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) {
