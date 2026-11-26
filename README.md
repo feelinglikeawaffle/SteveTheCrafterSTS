@@ -28,7 +28,7 @@ A Minecraft-inspired custom character concept for **Slay the Spire (2017)**. Ste
 
 - Steve character and starting relic / deck
 - Mining, crafting, equipment, enchantment, survival, and explosive card archetypes
-- Approximately 75-card pool (final balance to be playtested)
+- 22 implemented cards so far, with a planned expansion toward an approximately 75-card pool (final balance to be playtested)
 - 10–12 character relics and character-specific potions
 - Crafting Table special room with a recipe interface
 - Minecraft Live / Mob Vote-inspired 2D art for all character assets
@@ -44,8 +44,8 @@ The game and modding framework JARs are not included in the repository. Do not d
 1. Confirm mod framework versions and create a clean buildable BaseMod project.
 2. Register Steve with a working character selection and starting deck.
 3. Implement persistent run resources and resource UI.
-4. Add starter cards and the first mining / crafting synergies.
-5. Add equipment, enchantments, relics, and the full card pool.
+4. Expand the card pool with mining, crafting, equipment, enchantment, and survival synergies (22 cards currently implemented).
+5. Add more relics, potions, and the remaining card pool.
 6. Implement the Crafting Table room and recipe UI.
 7. Add and polish the consistent illustrated art set; test and balance in-game.
 
