@@ -9,7 +9,7 @@ import stevethecrafter.resources.SteveResource;
 public class LapisEnchant extends AbstractSteveCard {
     public static final String ID = "stevethecrafter:LapisEnchant";
     public LapisEnchant() {
-        super(ID, "Lapis Enchantment", "images/relics/enchanted_book.png", 1, "Gain 1 Lapis. Draw 1 card.", CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
+        super(ID, "Lapis Enchantment", "images/cards/lapis_enchant.png", 1, "Gain 1 Lapis. Draw 1 card.", CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) {
         animateCraft();
