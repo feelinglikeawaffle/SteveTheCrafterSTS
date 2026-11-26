@@ -18,6 +18,18 @@ import stevethecrafter.cards.MineCopper;
 import stevethecrafter.cards.MineRedstone;
 import stevethecrafter.cards.TNT;
 import stevethecrafter.cards.LapisEnchant;
+import stevethecrafter.cards.IronAxe;
+import stevethecrafter.cards.CobblestoneGuard;
+import stevethecrafter.cards.SmeltOre;
+import stevethecrafter.cards.ForgeStrike;
+import stevethecrafter.cards.RedstonePulse;
+import stevethecrafter.cards.TNTCrate;
+import stevethecrafter.cards.DiamondEdge;
+import stevethecrafter.cards.EnchantedArmor;
+import stevethecrafter.cards.GoldenApple;
+import stevethecrafter.cards.EmeraldTrade;
+import stevethecrafter.cards.LapisFocus;
+import stevethecrafter.cards.NetheriteHammer;
 import stevethecrafter.relics.SteveInventory;
 
 /** Mod entry point and Steve character registration. */
@@ -57,6 +69,18 @@ public class SteveTheCrafterMod implements EditCharactersSubscriber, EditCardsSu
         BaseMod.addCard(new MineRedstone());
         BaseMod.addCard(new TNT());
         BaseMod.addCard(new LapisEnchant());
+        BaseMod.addCard(new IronAxe());
+        BaseMod.addCard(new CobblestoneGuard());
+        BaseMod.addCard(new SmeltOre());
+        BaseMod.addCard(new ForgeStrike());
+        BaseMod.addCard(new RedstonePulse());
+        BaseMod.addCard(new TNTCrate());
+        BaseMod.addCard(new DiamondEdge());
+        BaseMod.addCard(new EnchantedArmor());
+        BaseMod.addCard(new GoldenApple());
+        BaseMod.addCard(new EmeraldTrade());
+        BaseMod.addCard(new LapisFocus());
+        BaseMod.addCard(new NetheriteHammer());
     }
 
     @Override
