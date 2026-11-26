@@ -14,7 +14,7 @@ public class StoneSword extends AbstractSteveCard {
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) {
         animateAttack();
-        addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH));
+        addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
     }
     @Override public void upgrade() { if (!upgraded) { upgradeName(); upgradeDamage(3); } }
     @Override public AbstractSteveCard makeCopy() { return new StoneSword(); }
