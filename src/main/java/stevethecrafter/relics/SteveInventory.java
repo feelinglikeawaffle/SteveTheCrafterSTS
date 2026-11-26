@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import stevethecrafter.actions.GainResourceAction;
 import stevethecrafter.resources.SteveResource;
+import stevethecrafter.SteveTheCrafterMod;
 
 /** Steve's run-defining starter relic. */
 public class SteveInventory extends CustomRelic {
@@ -14,7 +15,7 @@ public class SteveInventory extends CustomRelic {
 
     public SteveInventory() {
         // Reuse a vanilla texture until custom relic art is made.
-        super(ID, ImageMaster.loadImage("images/relics/burning_blood.png"),
+        super(ID, ImageMaster.loadImage(SteveTheCrafterMod.makePath("images/relics/steves_inventory.png")),
                 RelicTier.STARTER, LandingSound.CLINK);
     }
 
