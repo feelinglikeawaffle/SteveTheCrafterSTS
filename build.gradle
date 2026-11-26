@@ -101,6 +101,91 @@ tasks.register('prepareSteveCardArt') {
     }
 }
 
+
+// Bundle real game card-frame/orb source textures under the mod namespace, then
+// shift their blue accents toward Steve's teal. This gives Steve a separate
+// LibraryType/card pool without relying on missing runtime texture paths.
+tasks.register('prepareSteveCardColorTextures') {
+    dependsOn tasks.named('processResources')
+    inputs.file(file('lib/desktop-1.0.jar'))
+    outputs.dir(file("$buildDir/resources/main/stevethecrafter/images/cardui"))
+    doLast {
+        File gameJar = file('lib/desktop-1.0.jar')
+        if (!gameJar.isFile()) {
+            throw new GradleException("Missing lib/desktop-1.0.jar. Run build-mod.bat so the build script can locate your game files.")
+        }
+
+        def texturePaths = [
+            'images/512/cardui/card_bg_attack.png',
+            'images/512/cardui/card_bg_skill.png',
+            'images/512/cardui/card_bg_power.png',
+            'images/512/cardui/card_orb.png',
+            'images/512/cardui/card_small_orb.png',
+            'images/1024/cardui/card_bg_attack.png',
+            'images/1024/cardui/card_bg_skill.png',
+            'images/1024/cardui/card_bg_power.png',
+            'images/1024/cardui/card_orb.png'
+        ]
+
+        java.util.zip.ZipFile zip = new java.util.zip.ZipFile(gameJar)
+        try {
+            texturePaths.each { relative ->
+                def entry = zip.getEntry(relative)
+                if (entry == null) {
+                    throw new GradleException("Could not find " + relative + " inside lib/desktop-1.0.jar; cannot safely build Steve's custom card colour.")
+                }
+
+                File output = file("$buildDir/resources/main/stevethecrafter/" + relative)
+                output.parentFile.mkdirs()
+                zip.getInputStream(entry).withCloseable { input ->
+                    output.withOutputStream { out ->
+                        byte[] buffer = new byte[8192]
+                        int count
+                        while ((count = input.read(buffer)) >= 0) {
+                            out.write(buffer, 0, count)
+                        }
+                    }
+                }
+
+                java.awt.image.BufferedImage source = javax.imageio.ImageIO.read(output)
+                if (source == null) {
+                    throw new GradleException("Invalid card texture PNG: " + relative)
+                }
+                java.awt.image.BufferedImage tinted = new java.awt.image.BufferedImage(
+                        source.width, source.height, java.awt.image.BufferedImage.TYPE_INT_ARGB)
+                for (int y = 0; y < source.height; y++) {
+                    for (int x = 0; x < source.width; x++) {
+                        int argb = source.getRGB(x, y)
+                        int alpha = (argb >>> 24) & 0xff
+                        if (alpha == 0) {
+                            tinted.setRGB(x, y, argb)
+                            continue
+                        }
+                        int red = (argb >>> 16) & 0xff
+                        int green = (argb >>> 8) & 0xff
+                        int blue = argb & 0xff
+                        float[] hsb = java.awt.Color.RGBtoHSB(red, green, blue, null)
+                        // Only shift blue/cyan saturated pixels; preserve neutral parchment and shadows.
+                        if (hsb[1] > 0.18F && hsb[0] >= 0.48F && hsb[0] <= 0.78F) {
+                            hsb[0] = 0.47F
+                            hsb[1] = Math.min(1.0F, hsb[1] * 1.12F)
+                            int rgb = java.awt.Color.HSBtoRGB(hsb[0], hsb[1], hsb[2])
+                            tinted.setRGB(x, y, (alpha << 24) | (rgb & 0x00ffffff))
+                        } else {
+                            tinted.setRGB(x, y, argb)
+                        }
+                    }
+                }
+                javax.imageio.ImageIO.write(tinted, 'png', output)
+                println("Prepared Steve teal card texture: " + relative)
+            }
+        } finally {
+            zip.close()
+        }
+    }
+}
+
 tasks.named('jar') {
     dependsOn tasks.named('prepareSteveCardArt')
+    dependsOn tasks.named('prepareSteveCardColorTextures')
 }
