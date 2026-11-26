@@ -34,11 +34,23 @@ function Find-RequiredJar([string]$Name, [string[]]$Roots) {
 $searchRoots = @($GameDir, $workshopDir)
 $jarMap = @{
     "desktop-1.0.jar" = @($GameDir)
-    "ModTheSpire.jar" = @($GameDir)
+    "ModTheSpire.jar" = $searchRoots
     "BaseMod.jar" = $searchRoots
 }
 foreach ($name in $jarMap.Keys) {
     $source = Find-RequiredJar $name $jarMap[$name]
+
+    # Steam's current "Play with Mods" setup may use mts-launcher.jar in
+    # the game folder instead of ModTheSpire.jar. Use it as the compile-time
+    # ModTheSpire dependency when the original jar is not present.
+    if (-not $source -and $name -eq "ModTheSpire.jar") {
+        $launcherJar = Join-Path $GameDir "mts-launcher.jar"
+        if (Test-Path $launcherJar) {
+            $source = $launcherJar
+            Write-Host "Using mts-launcher.jar as the ModTheSpire dependency"
+        }
+    }
+
     if (-not $source) {
         throw "Could not find $name. Confirm ModTheSpire and BaseMod are installed. Expected to find it under: $($jarMap[$name] -join ', ')"
     }
