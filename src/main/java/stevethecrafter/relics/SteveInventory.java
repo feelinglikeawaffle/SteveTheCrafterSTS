@@ -14,8 +14,9 @@ public class SteveInventory extends CustomRelic {
     public static final String ID = "stevethecrafter:SteveInventory";
 
     public SteveInventory() {
-        // Reuse a vanilla texture until custom relic art is made.
-        super(ID, ImageMaster.loadImage(SteveTheCrafterMod.makePath("images/relics/steves_inventory.png")),
+        // Use a guaranteed vanilla texture for the first startup test.
+        // The custom Steve inventory art can be restored once its loading path is verified.
+        super(ID, ImageMaster.loadImage("images/relics/burning_blood.png"),
                 RelicTier.STARTER, LandingSound.CLINK);
     }
 
