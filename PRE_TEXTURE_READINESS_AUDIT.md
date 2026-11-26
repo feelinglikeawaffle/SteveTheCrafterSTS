@@ -15,10 +15,10 @@ This document is the hand-off checklist for the next art pass. It intentionally 
 - The imported animation atlas and all eight strips are mirrored into the mod runtime resource folder.
 - Steve now uses a custom sprite-sheet AbstractAnimation renderer; attack, mining, block, and craft cards request their matching clips.
 - Hurt and death clips are hooked after player damage; walk is available for future movement transitions. Sprite scale, baseline, and timing remain unverified in-game.
-- The custom energy-orb layer files were not present, so Steve now uses BaseMod's built-in default orb instead of missing file paths.
+- No custom card-background or energy-orb layers are registered. Steve uses the game's built-in BLUE card frames and orb, avoiding the previously missing texture paths.
 - The 12 material, 12 relic, 6 potion, and 4 room icons are mirrored into runtime resources but are not yet wired to custom UI.
 - `build.gradle` expects local Slay the Spire, ModTheSpire, and BaseMod JARs in `lib/`. Those JARs are not committed; there is no Gradle wrapper or configured CI build in this repository.
-- The code has not yet been compiled or tested in-game.
+- The latest card-color fallback and per-card image-path changes have not yet been compiled or tested in-game.
 
 ## Texture filenames to prepare
 
