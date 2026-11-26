@@ -27,6 +27,13 @@ ASSETS = [
     ("src/main/resources/stevethecrafter/images/materials/redstone.png", (32, 32)),
     ("src/main/resources/stevethecrafter/images/rooms/nether_portal.png", (256, 256)),
     ("src/main/resources/stevethecrafter/images/relics/enchanted_book.png", (64, 64)),
+    ("src/main/resources/stevethecrafter/images/relics/nether_star.png", (64, 64)),
+    ("src/main/resources/stevethecrafter/images/materials/iron.png", (32, 32)),
+    ("src/main/resources/stevethecrafter/images/materials/diamond.png", (32, 32)),
+    ("src/main/resources/stevethecrafter/images/relics/golden_apple.png", (64, 64)),
+    ("src/main/resources/stevethecrafter/images/materials/emerald.png", (32, 32)),
+    ("src/main/resources/stevethecrafter/images/materials/lapis.png", (32, 32)),
+    ("src/main/resources/stevethecrafter/images/materials/ancient_debris.png", (32, 32)),
 ]
 PNG_SIGNATURE = b"\x89PNG\r\n\x1a\n"
 
@@ -65,7 +72,10 @@ def main():
     generated = []
     for stem in ("wooden_sword", "wooden_pickaxe", "wooden_shield", "mine_coal",
                  "make_torch", "stone_sword", "mine_copper", "mine_redstone",
-                 "tnt", "lapis_enchant"):
+                 "tnt", "lapis_enchant", "iron_axe", "cobblestone_guard", "smelt_ore",
+                 "forge_strike", "redstone_pulse", "tnt_crate", "diamond_edge",
+                 "enchanted_armor", "golden_apple", "emerald_trade", "lapis_focus",
+                 "netherite_hammer"):
         generated.append((generated_root / (stem + ".png"), (250, 190)))
         generated.append((generated_root / (stem + "_p.png"), (500, 380)))
 
