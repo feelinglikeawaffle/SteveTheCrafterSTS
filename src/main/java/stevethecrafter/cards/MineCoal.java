@@ -8,7 +8,7 @@ import stevethecrafter.resources.SteveResource;
 public class MineCoal extends AbstractSteveCard {
     public static final String ID = "stevethecrafter:MineCoal";
     public MineCoal() {
-        super(ID, "Mine Coal", "images/materials/coal.png", 1, "Gain 2 Coal.", CardType.SKILL, CardRarity.BASIC, CardTarget.SELF);
+        super(ID, "Mine Coal", "images/cards/mine_coal.png", 1, "Gain 2 Coal.", CardType.SKILL, CardRarity.BASIC, CardTarget.SELF);
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) {
         animateMine(); addToBot(new GainResourceAction(SteveResource.COAL, upgraded ? 3 : 2)); }
