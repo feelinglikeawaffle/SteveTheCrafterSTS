@@ -16,7 +16,7 @@ public class NetheriteHammer extends AbstractSteveCard {
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) {
         animateAttack();
-        addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.SMASH));
+        addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
         addToBot(new GainResourceAction(SteveResource.ANCIENT_DEBRIS, 2));
     }
     @Override public void upgrade() { if (!upgraded) { upgradeName(); upgradeDamage(8); } }
