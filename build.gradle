@@ -12,15 +12,34 @@ repositories {
     mavenCentral()
 }
 
-// Put your locally installed game/mod framework jars in ./lib (not committed).
-// Exact jar filenames can vary by installation; adjust these entries if needed.
+// These local game/mod JARs are intentionally not committed to the repository.
 dependencies {
     compileOnly files('lib/desktop-1.0.jar')
     compileOnly files('lib/ModTheSpire.jar')
     compileOnly files('lib/BaseMod.jar')
+    compileOnly fileTree(dir: 'lib', include: ['*.jar'])
 }
 
 jar {
     archiveBaseName = 'SteveTheCrafterSTS'
     from('src/main/resources')
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+tasks.register('verifyLocalLibraries') {
+    doLast {
+        def required = ['desktop-1.0.jar', 'ModTheSpire.jar', 'BaseMod.jar']
+        def missing = required.findAll { !file("lib/${it}").isFile() }
+        if (!missing.isEmpty()) {
+            throw new GradleException("Missing local game/mod libraries in lib/: ${missing.join(', ')}. See BUILD_WINDOWS.md.")
+        }
+    }
+}
+
+tasks.named('compileJava') {
+    dependsOn tasks.named('verifyLocalLibraries')
 }
