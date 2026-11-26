@@ -11,7 +11,7 @@ This document is the hand-off checklist for the next art pass. It intentionally 
 - One starter relic class exists: `SteveInventory`.
 - The five character PNGs and one shared card placeholder PNG are present in the repository.
 - All ten card constructors currently point to the same `card_placeholder.png`.
-- `SteveInventory` currently reuses the vanilla Burning Blood relic texture.
+- `SteveInventory` uses the bundled `images/relics/steves_inventory.png` texture.
 - The imported animation atlas and all eight strips are mirrored into the mod runtime resource folder.
 - Steve now uses a custom sprite-sheet AbstractAnimation renderer; attack, mining, block, and craft cards request their matching clips.
 - Hurt and death clips are hooked after player damage; walk is available for future movement transitions. Sprite scale, baseline, and timing remain unverified in-game.
