@@ -2,7 +2,7 @@
 
 A Minecraft-inspired custom character concept for **Slay the Spire (2017)**. Steve's run revolves around mining resources, crafting equipment, and turning early investment into powerful late-run payoffs. Art direction: Minecraft Live / Mob Vote-inspired 2D illustration, with a consistent visual style across Steve, cards, relics, and the Crafting Table room.
 
-> This repository is an initial project scaffold and design specification. It is not yet a compiled or playable mod. The character registration, card implementation, room, and art assets will be added in staged commits and tested against the user's local Slay the Spire / ModTheSpire / BaseMod installation.
+## Current prototype status\n\nThe current build branch contains Steve's character registration, a 10-card prototype, a starting relic, run-resource counters, and original character/card/relic/potion/room art. The sprite atlas and action-triggered clips are connected in code. This is an early playable-prototype target, **not** the planned full 75-card character: the Crafting Table special room, full card pool, balance pass, and in-game animation testing are still unfinished.\n\nThe art import checker passes, but the Java project has not yet been compiled against your local Slay the Spire / ModTheSpire / BaseMod libraries. Do not treat this branch as a tested release yet.
 
 ## Current design pillars
 
