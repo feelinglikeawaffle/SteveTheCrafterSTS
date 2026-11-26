@@ -31,7 +31,7 @@ The ten cards no longer all point to the same placeholder. They currently use ex
 | TNT! | `images/rooms/nether_portal.png` |
 | Lapis Enchantment | `images/relics/enchanted_book.png` |
 
-These are functional interim illustrations, not final card paintings. The imported material/relic icons are small pixel-art assets (32×32 or 64×64), so a later art pass should replace them with dedicated card portraits at 250×190 and matching inspect portraits at 500×380. The game will use the existing base-game frames/orbs until a complete, verified custom card-colour texture set is added.
+The Gradle build now converts each source icon into a correctly proportioned 250×190 card illustration and a 500×380 inspect portrait. It preserves the pixel-art style with nearest-neighbour scaling and transparent padding rather than stretching or cropping the icon. These are distinct, correctly sized interim illustrations, not final hand-painted card art. The game uses the existing base-game frames/orbs until a complete, verified custom card-colour texture set is added.
 
 ## Imported Steve animation
 
@@ -61,4 +61,4 @@ From the repository root:
 python tools/check_assets.py
 ```
 
-This checks the current character art and all image files referenced by Steve's ten card constructors. The project still needs a local build and in-game smoke test after each change.
+This checks the source character/card assets and, after a build, all twenty generated card-art PNGs at 250×190 and 500×380. The project still needs an in-game smoke test after each change.
