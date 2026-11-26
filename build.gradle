@@ -38,7 +38,19 @@ def steveCardArt = [
     [name: 'mine_copper', source: 'images/materials/copper.png'],
     [name: 'mine_redstone', source: 'images/materials/redstone.png'],
     [name: 'tnt', source: 'images/rooms/nether_portal.png'],
-    [name: 'lapis_enchant', source: 'images/relics/enchanted_book.png']
+    [name: 'lapis_enchant', source: 'images/relics/enchanted_book.png'],
+    [name: 'iron_axe', source: 'images/relics/diamond_sword.png'],
+    [name: 'cobblestone_guard', source: 'images/relics/shield.png'],
+    [name: 'smelt_ore', source: 'images/materials/iron.png'],
+    [name: 'forge_strike', source: 'images/relics/nether_star.png'],
+    [name: 'redstone_pulse', source: 'images/materials/redstone.png'],
+    [name: 'tnt_crate', source: 'images/rooms/nether_portal.png'],
+    [name: 'diamond_edge', source: 'images/materials/diamond.png'],
+    [name: 'enchanted_armor', source: 'images/relics/enchanted_book.png'],
+    [name: 'golden_apple', source: 'images/relics/golden_apple.png'],
+    [name: 'emerald_trade', source: 'images/materials/emerald.png'],
+    [name: 'lapis_focus', source: 'images/materials/lapis.png'],
+    [name: 'netherite_hammer', source: 'images/materials/ancient_debris.png']
 ]
 
 tasks.register('prepareSteveCardArt') {
