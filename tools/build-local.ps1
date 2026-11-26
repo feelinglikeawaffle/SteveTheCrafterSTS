@@ -1,13 +1,21 @@
 param(
-    [string]$GameDir = "$env:ProgramFiles(x86)\Steam\steamapps\common\SlayTheSpire"
+    [string]$GameDir = ""
 )
 $ErrorActionPreference = "Stop"
 $root = Split-Path -Parent $PSScriptRoot
 Set-Location $root
 
+# Resolve the real 32-bit Program Files folder safely; directly expanding
+# $env:ProgramFiles(x86) can accidentally drop the space before (x86).
+$programFilesX86 = [Environment]::GetFolderPath([Environment+SpecialFolder]::ProgramFilesX86)
+if ([string]::IsNullOrWhiteSpace($GameDir)) {
+    $GameDir = Join-Path $programFilesX86 "Steam\steamapps\common\SlayTheSpire"
+}
+$workshopDir = Join-Path $programFilesX86 "Steam\steamapps\workshop\content"
+
 Write-Host "Steve the Crafter - automatic Windows build" -ForegroundColor Cyan
 if (-not (Test-Path $GameDir)) {
-    throw "Slay the Spire folder not found: $GameDir"
+    throw "Slay the Spire folder not found: $GameDir. If Steam is installed elsewhere, rerun with the actual game folder path."
 }
 
 $lib = Join-Path $root "lib"
@@ -23,7 +31,7 @@ function Find-RequiredJar([string]$Name, [string[]]$Roots) {
     return $null
 }
 
-$searchRoots = @($GameDir, (Join-Path $env:ProgramFiles(x86) "Steam\steamapps\workshop\content"))
+$searchRoots = @($GameDir, $workshopDir)
 $jarMap = @{
     "desktop-1.0.jar" = @($GameDir)
     "ModTheSpire.jar" = @($GameDir)
