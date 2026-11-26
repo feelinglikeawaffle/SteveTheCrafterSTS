@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 public class StoneSword extends AbstractSteveCard {
     public static final String ID = "stevethecrafter:StoneSword";
     public StoneSword() {
-        super(ID, "Stone Sword", "images/relics/diamond_sword.png", 1, "Deal 8 damage.", CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
+        super(ID, "Stone Sword", "images/materials/stone.png", 1, "Deal 8 damage.", CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
         baseDamage = 8;
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) {
