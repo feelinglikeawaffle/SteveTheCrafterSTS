@@ -37,7 +37,7 @@ A Minecraft-inspired custom character concept for **Slay the Spire (2017)**. Ste
 
 This mod targets the original Slay the Spire, not Slay the Spire 2. It will use Java and the community ModTheSpire + BaseMod ecosystem.
 
-The game and modding framework JARs are not included. Do not distribute the game's files. Once the implementation is ready, place the required local framework/game libraries in `lib/` as described by the build instructions that will be added with the first compilable milestone.
+The game and modding framework JARs are not included in the repository. Do not distribute the game's files. Use the automatic Windows build instructions below; the script finds the local JARs and stores copies in the ignored `lib/` folder.
 
 ## Roadmap
 
@@ -52,3 +52,13 @@ The game and modding framework JARs are not included. Do not distribute the game
 ## Art note
 
 The visual direction is inspired by Minecraft's official 2D promotional / Minecraft Live character art. Assets should be original fan-made illustrations, not extracted official game or promotional artwork.
+
+
+## Automatic Windows build (no manual Gradle setup)
+
+1. Make sure Steam Slay the Spire, ModTheSpire, and BaseMod are installed.
+2. Double-click `build-mod.bat` in the repository folder.
+3. On the first run, the script downloads Gradle automatically and locates the three required game/mod JARs. It keeps those private files in the ignored `lib/` folder.
+4. When the build succeeds, the mod JAR is created in `build/libs/`.
+
+The default Steam location is `C:\\Program Files (x86)\\Steam\\steamapps\\common\\SlayTheSpire`. If your game is installed elsewhere, run `tools/build-local.ps1` with `-GameDir "your game folder"`. The build script does not upload or commit any game/mod JARs.
