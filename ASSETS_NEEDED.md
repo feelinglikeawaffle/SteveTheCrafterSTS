@@ -1,10 +1,8 @@
 # Steve the Crafter — asset checklist
 
-The first-pass art pack is already imported into GitHub and mirrored into the mod's runtime resource folder. The original art folders are kept as backups/source copies.
+This document describes the assets currently wired into the mod. It distinguishes the temporary, safe card-rendering setup from the later high-resolution art pass.
 
-Repository: https://github.com/feelinglikeawaffle/SteveTheCrafterSTS
-
-## Existing character art
+## Character art
 
 Folder: `src/main/resources/stevethecrafter/images/char/`
 
@@ -14,13 +12,26 @@ Folder: `src/main/resources/stevethecrafter/images/char/`
 - `shoulder2.png` — 256×256
 - `corpse.png` — 256×256
 
-## Existing card art
+## Current card appearance
 
-Folder: `src/main/resources/stevethecrafter/images/cards/`
+Steve currently uses the game's built-in **BLUE** card colour. This is intentional: the previous `BaseMod.addColor` registration referenced custom background/orb PNGs that were not actually in the JAR. Those null textures caused the combat hand-render crash. Using the built-in colour gives BaseMod valid game-owned card backgrounds and energy orbs while the custom teal texture pack is prepared.
 
-- `card_placeholder.png` — 512×512
+The ten cards no longer all point to the same placeholder. They currently use existing, themed art from the imported resource pack:
 
-All 10 current cards still use this shared placeholder. Unique card art can be added later without changing the animation import.
+| Card | Current art resource |
+|---|---|
+| Wooden Sword | `images/relics/diamond_sword.png` |
+| Wooden Pickaxe | `images/relics/iron_pickaxe.png` |
+| Wooden Shield | `images/relics/shield.png` |
+| Mine Coal | `images/materials/coal.png` |
+| Make a Torch | `images/relics/redstone_torch.png` |
+| Stone Sword | `images/relics/diamond_sword.png` |
+| Mine Copper | `images/materials/copper.png` |
+| Redstone Circuit | `images/materials/redstone.png` |
+| TNT! | `images/rooms/nether_portal.png` |
+| Lapis Enchantment | `images/relics/enchanted_book.png` |
+
+These are functional interim illustrations, not final card paintings. The imported material/relic icons are small pixel-art assets (32×32 or 64×64), so a later art pass should replace them with dedicated card portraits at 250×190 and matching inspect portraits at 500×380. The game will use the existing base-game frames/orbs until a complete, verified custom card-colour texture set is added.
 
 ## Imported Steve animation
 
@@ -31,29 +42,23 @@ Runtime folder: `src/main/resources/stevethecrafter/images/char/animation/`
 - `block_strip.png`, `hurt_strip.png`, `death_strip.png`, `craft_strip.png`
 - `animation_frames.json`
 
-The custom `SteveSpriteAnimation` renderer is now connected to the character. Idle loops; card plays trigger sword, mining, block, and craft clips. Walk/hurt/death are included but still need lifecycle hooks and in-game testing.
+The custom sprite-sheet animation renderer is connected to the character. Animation scale, baseline, and timing still require in-game verification.
 
-## Imported icons and room art
-
-These files are also mirrored to runtime paths:
+## Other imported assets
 
 - `images/materials/` — 12 icons, 32×32
 - `images/relics/` — 12 icons, 64×64
 - `images/potions/` — 6 icons, 32×40
 - `images/rooms/` — 4 illustrations, 256×256
 
-They are available as mod resources, but aren't yet connected to a custom inventory, relic, potion, or room UI.
-
-## Energy orb
-
-No custom orb layers are required right now. Steve uses BaseMod's built-in default orb because the custom layer files weren't included. This avoids missing-resource paths.
+These files are available as mod resources. Not all of them are connected to custom gameplay UI yet.
 
 ## Verify the import
 
 From the repository root:
 
 ```bash
-python scripts/check_assets.py
+python tools/check_assets.py
 ```
 
-The checker now verifies the runtime file paths and expected dimensions for the full art pack. The source integration has not yet been compiled or tested in Slay the Spire; the first run should verify character positioning and animation timing.
+This checks the current character art and all image files referenced by Steve's ten card constructors. The project still needs a local build and in-game smoke test after each change.
