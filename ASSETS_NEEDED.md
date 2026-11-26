@@ -62,3 +62,23 @@ python tools/check_assets.py
 ```
 
 This checks the source character/card assets and, after a build, all twenty generated card-art PNGs at 250×190 and 500×380. The project still needs an in-game smoke test after each change.
+
+
+## Expanded card pool art
+
+The current pool now contains 22 cards. The build generates a dedicated 250×190 hand illustration and 500×380 inspect portrait for each card from its corresponding themed source icon. Newly added card art sources are:
+
+- Iron Axe — diamond sword icon
+- Cobblestone Guard — shield icon
+- Smelt Ore — iron icon
+- Forge Strike — Nether Star icon
+- Redstone Pulse — redstone icon
+- TNT Crate — Nether Portal illustration
+- Diamond Edge — diamond icon
+- Enchanted Armor — enchanted book icon
+- Golden Apple — golden apple icon
+- Emerald Trade — emerald icon
+- Lapis Focus — lapis icon
+- Netherite Hammer — ancient debris icon
+
+The new portraits are functional interim art. A separate painterly illustration pass is still needed for a closer match to the game's hand-painted card art.
