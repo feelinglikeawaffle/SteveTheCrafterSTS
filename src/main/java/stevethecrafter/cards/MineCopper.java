@@ -8,7 +8,7 @@ import stevethecrafter.resources.SteveResource;
 public class MineCopper extends AbstractSteveCard {
     public static final String ID = "stevethecrafter:MineCopper";
     public MineCopper() {
-        super(ID, "Mine Copper", "card_placeholder.png", 1, "Gain 2 Copper.", CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
+        super(ID, "Mine Copper", "images/materials/copper.png", 1, "Gain 2 Copper.", CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) {
         animateMine();
