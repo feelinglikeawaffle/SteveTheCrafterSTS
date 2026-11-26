@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Check that Steve the Crafter's starter art files exist and are valid PNGs.
+"""Check that Steve the Crafter's referenced art files exist and are valid PNGs.
 
 Run from the repository root:
     python tools/check_assets.py
@@ -16,7 +16,17 @@ ASSETS = [
     ("src/main/resources/stevethecrafter/images/char/shoulder1.png", (256, 256)),
     ("src/main/resources/stevethecrafter/images/char/shoulder2.png", (256, 256)),
     ("src/main/resources/stevethecrafter/images/char/corpse.png", (256, 256)),
-    ("src/main/resources/stevethecrafter/images/cards/card_placeholder.png", (512, 512)),
+    # Card illustrations currently reuse the imported pixel-art inventory icons.
+    ("src/main/resources/stevethecrafter/images/relics/diamond_sword.png", (64, 64)),
+    ("src/main/resources/stevethecrafter/images/relics/iron_pickaxe.png", (64, 64)),
+    ("src/main/resources/stevethecrafter/images/relics/shield.png", (64, 64)),
+    ("src/main/resources/stevethecrafter/images/materials/coal.png", (32, 32)),
+    ("src/main/resources/stevethecrafter/images/relics/redstone_torch.png", (64, 64)),
+    ("src/main/resources/stevethecrafter/images/materials/stone.png", (32, 32)),
+    ("src/main/resources/stevethecrafter/images/materials/copper.png", (32, 32)),
+    ("src/main/resources/stevethecrafter/images/materials/redstone.png", (32, 32)),
+    ("src/main/resources/stevethecrafter/images/rooms/nether_portal.png", (256, 256)),
+    ("src/main/resources/stevethecrafter/images/relics/enchanted_book.png", (64, 64)),
 ]
 PNG_SIGNATURE = b"\x89PNG\r\n\x1a\n"
 
@@ -53,9 +63,8 @@ def main():
     print()
     if missing or wrong_size or invalid:
         print(f"Needs attention: {len(missing)} missing, {len(wrong_size)} wrong-size, {len(invalid)} invalid.")
-        print("See ASSETS_NEEDED.md for upload locations and art guidance.")
         return 1
-    print("All starter art files are present and have the expected PNG dimensions.")
+    print("All referenced character and card-art PNGs are present at their expected source dimensions.")
     return 0
 
 
