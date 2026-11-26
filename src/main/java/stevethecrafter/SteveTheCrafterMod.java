@@ -4,9 +4,9 @@ import basemod.BaseMod;
 import basemod.interfaces.EditCharactersSubscriber;
 import basemod.interfaces.EditCardsSubscriber;
 import basemod.interfaces.EditRelicsSubscriber;
+import basemod.interfaces.EditStringsSubscriber;
 import com.badlogic.gdx.graphics.Color;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
-import com.megacrit.cardcrawl.localization.RelicStrings;
 import stevethecrafter.characters.SteveCharacter;
 import stevethecrafter.patches.SteveEnums;
 import stevethecrafter.cards.WoodenSword;
@@ -23,16 +23,12 @@ import stevethecrafter.relics.SteveInventory;
 
 /** Mod entry point and Steve character registration. */
 @SpireInitializer
-public class SteveTheCrafterMod implements EditCharactersSubscriber, EditCardsSubscriber, EditRelicsSubscriber {
+public class SteveTheCrafterMod implements EditCharactersSubscriber, EditCardsSubscriber, EditRelicsSubscriber, EditStringsSubscriber {
     public static final String MOD_ID = "stevethecrafter";
     private static final Color STEVE_TEAL = new Color(0.20F, 0.68F, 0.62F, 1.0F);
 
     public SteveTheCrafterMod() {
         BaseMod.subscribe(this);
-
-        // Load custom relic names/descriptions before AbstractRelic instances are created.
-        BaseMod.loadCustomStringsFile(RelicStrings.class,
-                makePath("localization/eng/RelicStrings.json"));
 
         BaseMod.addColor(SteveEnums.STEVE_COLOR,
                 STEVE_TEAL, STEVE_TEAL, STEVE_TEAL, STEVE_TEAL, STEVE_TEAL, STEVE_TEAL, STEVE_TEAL,
@@ -53,6 +49,13 @@ public class SteveTheCrafterMod implements EditCharactersSubscriber, EditCardsSu
 
     public static String makePath(String resource) {
         return MOD_ID + "/" + resource;
+    }
+
+    @Override
+    public void receiveEditStrings() {
+        // BaseMod loads localization during its string-editing phase, after game assets are ready.
+        BaseMod.loadCustomStringsFile(com.megacrit.cardcrawl.localization.RelicStrings.class,
+                "localization/eng/RelicStrings.json");
     }
 
     @Override
