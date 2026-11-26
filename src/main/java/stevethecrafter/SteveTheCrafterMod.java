@@ -53,9 +53,8 @@ public class SteveTheCrafterMod implements EditCharactersSubscriber, EditCardsSu
 
     @Override
     public void receiveEditStrings() {
-        // BaseMod loads localization during its string-editing phase, after game assets are ready.
         BaseMod.loadCustomStringsFile(com.megacrit.cardcrawl.localization.RelicStrings.class,
-                "localization/eng/RelicStrings.json");
+                makePath("localization/eng/RelicStrings.json"));
     }
 
     @Override
