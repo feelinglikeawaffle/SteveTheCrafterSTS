@@ -34,8 +34,8 @@ public final class SteveSpriteAnimation extends AbstractAnimation {
 
     private static final int FRAME_WIDTH = 96;
     private static final int FRAME_HEIGHT = 128;
-    private static final float DRAW_WIDTH = 192.0F;
-    private static final float DRAW_HEIGHT = 256.0F;
+    private static final float DRAW_WIDTH = 250.0F;
+    private static final float DRAW_HEIGHT = 330.0F;
     private static Texture atlas;
 
     private Clip clip = Clip.IDLE;
