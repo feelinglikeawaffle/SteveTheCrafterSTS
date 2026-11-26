@@ -14,7 +14,7 @@ Folder: `src/main/resources/stevethecrafter/images/char/`
 
 ## Current card appearance
 
-Steve currently uses the game's built-in **BLUE** card colour. This is intentional: the previous `BaseMod.addColor` registration referenced custom background/orb PNGs that were not actually in the JAR. Those null textures caused the combat hand-render crash. Using the built-in colour gives BaseMod valid game-owned card backgrounds and energy orbs while the custom teal texture pack is prepared.
+Steve now has a dedicated **STEVE** card colour and matching card-library type, so his reward screen can draw from his own card pool instead of offering Defect's blue cards. The build extracts the game's known-good card frames/orbs from the locally installed `desktop-1.0.jar`, bundles them under Steve's resource namespace, and shifts blue accents toward teal. This avoids the old missing-texture crash while keeping the custom character pool separate.
 
 The ten cards no longer all point to the same placeholder. They currently use existing, themed art from the imported resource pack:
 
@@ -31,7 +31,7 @@ The ten cards no longer all point to the same placeholder. They currently use ex
 | TNT! | `images/rooms/nether_portal.png` |
 | Lapis Enchantment | `images/relics/enchanted_book.png` |
 
-The Gradle build now converts each source icon into a correctly proportioned 250×190 card illustration and a 500×380 inspect portrait. It preserves the pixel-art style with nearest-neighbour scaling and transparent padding rather than stretching or cropping the icon. These are distinct, correctly sized interim illustrations, not final hand-painted card art. The game uses the existing base-game frames/orbs until a complete, verified custom card-colour texture set is added.
+The Gradle build now converts each source icon into a correctly proportioned 250×190 card illustration and a 500×380 inspect portrait. It preserves the pixel-art style with nearest-neighbour scaling and transparent padding rather than stretching or cropping the icon. These are distinct, correctly sized interim illustrations, not final hand-painted card art. The build currently derives Steve's teal frames/orbs from the game's own card textures. Their final visual polish still needs an in-game screenshot review.
 
 ## Imported Steve animation
 
@@ -82,3 +82,17 @@ The current pool now contains 22 cards. The build generates a dedicated 250×190
 - Netherite Hammer — ancient debris icon
 
 The new portraits are functional interim art. A separate painterly illustration pass is still needed for a closer match to the game's hand-painted card art.
+
+
+## Dedicated Steve card colour textures
+
+The build expects these source textures inside the locally installed `lib/desktop-1.0.jar`, then copies and teal-tints them into the mod JAR:
+
+- `images/512/cardui/card_bg_attack.png`
+- `images/512/cardui/card_bg_skill.png`
+- `images/512/cardui/card_bg_power.png`
+- `images/512/cardui/card_orb.png`
+- `images/512/cardui/card_small_orb.png`
+- matching 1024× card backgrounds and orb
+
+The generated textures live under `stevethecrafter/images/...` in the final JAR. If a source entry is absent, the build stops with the exact missing path instead of producing a mod that crashes later.
