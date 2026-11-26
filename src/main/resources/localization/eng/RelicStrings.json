@@ -1,0 +1,9 @@
+{
+  "stevethecrafter:SteveInventory": {
+    "NAME": "Steve's Inventory",
+    "FLAVOR": "A trusty inventory for every adventure.",
+    "DESCRIPTIONS": [
+      "At the start of each combat, gain 1 Coal and 1 Iron."
+    ]
+  }
+}
