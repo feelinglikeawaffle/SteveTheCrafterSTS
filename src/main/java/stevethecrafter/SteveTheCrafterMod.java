@@ -6,6 +6,7 @@ import basemod.interfaces.EditCardsSubscriber;
 import basemod.interfaces.EditRelicsSubscriber;
 import com.badlogic.gdx.graphics.Color;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
+import com.megacrit.cardcrawl.localization.RelicStrings;
 import stevethecrafter.characters.SteveCharacter;
 import stevethecrafter.patches.SteveEnums;
 import stevethecrafter.cards.WoodenSword;
@@ -28,6 +29,11 @@ public class SteveTheCrafterMod implements EditCharactersSubscriber, EditCardsSu
 
     public SteveTheCrafterMod() {
         BaseMod.subscribe(this);
+
+        // Load custom relic names/descriptions before AbstractRelic instances are created.
+        BaseMod.loadCustomStringsFile(RelicStrings.class,
+                makePath("localization/eng/RelicStrings.json"));
+
         BaseMod.addColor(SteveEnums.STEVE_COLOR,
                 STEVE_TEAL, STEVE_TEAL, STEVE_TEAL, STEVE_TEAL, STEVE_TEAL, STEVE_TEAL, STEVE_TEAL,
                 "images/512/cardui/card_bg_attack.png",
