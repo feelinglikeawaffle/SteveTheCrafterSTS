@@ -60,11 +60,38 @@ def main():
         else:
             print(f"OK        {relative} ({actual[0]}x{actual[1]})")
 
+    # The Gradle build generates correctly sized hand and inspect portraits.
+    generated_root = ROOT / "build/resources/main/stevethecrafter/images/cards"
+    generated = []
+    for stem in ("wooden_sword", "wooden_pickaxe", "wooden_shield", "mine_coal",
+                 "make_torch", "stone_sword", "mine_copper", "mine_redstone",
+                 "tnt", "lapis_enchant"):
+        generated.append((generated_root / (stem + ".png"), (250, 190)))
+        generated.append((generated_root / (stem + "_p.png"), (500, 380)))
+
+    if generated_root.exists():
+        for path, expected in generated:
+            if not path.is_file():
+                missing.append(str(path.relative_to(ROOT)))
+                print(f"MISSING   {path.relative_to(ROOT)}")
+                continue
+            actual = png_size(path)
+            if actual is None:
+                invalid.append(str(path.relative_to(ROOT)))
+                print(f"NOT PNG   {path.relative_to(ROOT)}")
+            elif actual != expected:
+                wrong_size.append((str(path.relative_to(ROOT)), actual, expected))
+                print(f"SIZE      {path.relative_to(ROOT)}: found {actual[0]}x{actual[1]}, expected {expected[0]}x{expected[1]}")
+            else:
+                print(f"OK        {path.relative_to(ROOT)} ({actual[0]}x{actual[1]})")
+    else:
+        print("NOTE      Run the Gradle build to generate and check 250x190 / 500x380 card portraits.")
+
     print()
     if missing or wrong_size or invalid:
         print(f"Needs attention: {len(missing)} missing, {len(wrong_size)} wrong-size, {len(invalid)} invalid.")
         return 1
-    print("All referenced character and card-art PNGs are present at their expected source dimensions.")
+    print("All source assets and generated card-art PNGs are present at their expected dimensions.")
     return 0
 
 
